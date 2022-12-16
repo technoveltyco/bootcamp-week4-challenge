@@ -170,14 +170,19 @@ function main() {
     const [giDate, giAmount] = getGreatestIncrease();
     const [gdDate, gdAmount] = getGreatestDecrease();
 
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
     const output = `
     Financial Analysis
 ------------------------------------------------------------------------
     Total Months: ${totalMonths}
-    Total: ${total}
-    Average Change: ${averageChange}
-    Greatest Increase in Profits: ${giDate} (${giAmount})
-    Greatest Decrease in Profits: ${gdDate} (${gdAmount})
+    Total: ${formatter.format(total)}
+    Average Change: ${formatter.format(averageChange)}
+    Greatest Increase in Profits: ${giDate} (${formatter.format(giAmount)})
+    Greatest Decrease in Profits: ${gdDate} (${formatter.format(gdAmount)})
 ------------------------------------------------------------------------
     `;
 
