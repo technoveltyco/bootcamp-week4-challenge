@@ -79,15 +79,36 @@ function getTotalMonths() {
 }
 
 /**
+ * Gets the net total net amount of Profit/Losses over the entire period in the dataset.
+ * 
+ * @returns {Number}
+ *      A signed Number representing the total net balance from the dataset.
+ */
+function getTotalAmount() {
+    let totalAmount = .0;
+
+    for (let index = 0; index < dataset.length; index++) {
+        const transaction = getTransaction(index);
+        const balance = getTransactionBalance(transaction);
+
+        totalAmount += balance;
+    }
+
+    return totalAmount;
+}
+
+/**
  * Main entry point.
  */
 function main() {
     const totalMonths = getTotalMonths();
+    const total = getTotalAmount();
 
     const output = `
     Financial Analysis
 ------------------------------------------------------------------------
     Total Months: ${totalMonths}
+    Total: ${total}
 ------------------------------------------------------------------------
     `;
 
