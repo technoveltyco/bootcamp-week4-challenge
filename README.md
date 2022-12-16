@@ -1,13 +1,14 @@
-# bootcamp-week4-challenge
+# Financial Analysis Console App
 JavaScript Fundamentals: Console Finances
 
 ## Table of contents
 
-- [bootcamp-week4-challenge](#bootcamp-week4-challenge)
+- [Financial Analysis Console App](#financial-analysis-console-app)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [The challenge](#the-challenge)
-    - [Screenshot](#screenshot)
+    - [Screenshots](#screenshots)
+      - [Financial Analysis Output](#financial-analysis-output)
     - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
@@ -17,93 +18,106 @@ JavaScript Fundamentals: Console Finances
   - [Author](#author)
   - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
+
+In this challenge, you'll be using the concepts you've learned to complete the required activity. This activity presents a real-world situation in which your newfound JavaScript skills will come in handy. You are tasked with creating code for analyzing the financial records of a company. You have been provided with a financial dataset in the `starter/index.js` file.
 
 ### The challenge
 
-Describe the challenge here
+You have been given a dataset composed of arrays with two fields, Date and Profit/Losses.
 
-### Screenshot
+Your task is to write JavaScript code that analyzes the records to calculate each of the following:
 
-![](./screenshot.jpg)
+* The total number of months included in the dataset.
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+* The net total amount of Profit/Losses over the entire period.
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
+* The average of the **changes** in Profit/Losses over the entire period.
+  * You will need to track what the total change in profits are from month to month and then find the average.
+  * (`Total/Number of months`)
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
+* The greatest increase in profits (date and amount) over the entire period.
 
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+* The greatest decrease in losses (date and amount) over the entire period.
+
+When you open your code in the browser your resulting analysis should look similar to the following:
+
+  ```text
+  Financial Analysis
+  ----------------------------
+  Total Months: 25
+  Total: $2561231
+  Average  Change: $-2315.12
+  Greatest Increase in Profits: Feb-2012 ($1926159)
+  Greatest Decrease in Profits: Sep-2013 ($-2196167)
+  ```
+
+Your final code should print the analysis to the console.
+
+### Screenshots
+
+![Financial Analysis console output](./assets/images/Screenshot%202022-12-16%20100333.png)
+
+![Financial Analysis alert output](assets/images/Screenshot%202022-12-16%20100525.png)
+
+#### Financial Analysis Output
+
+```text
+    Financial Analysis
+---------------------------------------------------------------
+    Total Months: 86
+    Total: $38,382,578.00
+    Average Change: $7,803.48
+    Greatest Increase in Profits: Feb-2012 ($1,170,593.00)
+    Greatest Decrease in Profits: Sep-2013 (-$1,196,225.00)
+---------------------------------------------------------------
+```
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/technoveltyco/bootcamp-week4-challenge](https://github.com/technoveltyco/bootcamp-week4-challenge)
+- Live Site URL: [https://technoveltyco.github.io/bootcamp-week4-challenge/](https://technoveltyco.github.io/bootcamp-week4-challenge/)
 
 ## My process
+
+I used 
 
 ### Built with
 
 - Semantic HTML5 markup
 - CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- Vanilla JavaScript
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+A good understanding on how to use string formatter to output numbers with thousands and decimals, and include their currencies following the internationalization standards.
 
 ```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+const str = formatter.format(1500);
+console.log(str)
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+* Improve the UX/UI creating a website to display the financial analysis.
+* Create CRUD features to operate with the dataset.
+* Create an API to decouple data from presentation.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
-
+- [MDN Reference](https://developer.mozilla.org/en-US/) - main reference for depper understanding of the semantic HTML, advanced CSS properties, and advanced JavaScript.
+- [W3C School HTML Tutorial](https://www.w3schools.com/html/default.asp) - alternative reference for semantic and accessible HTML code snippets.
+- [W3C School CSS Tutorial](https://www.w3schools.com/css/default.asp) - It helped as a reference for css properties.
+- [W3C School JavaScript Tutorial](https://www.w3schools.com/js/DEFAULT.asp) - A quick reference for Math functions and code snippets.
+- [How to Format Numbers as a Currency String in JavaScript?](https://thewebdev.info/2021/02/13/how-to-format-numbers-as-a-currency-string-in-javascript/) Useful resource to understand about string formatters, and specifically to format numbers as currencies.
 ## Author
-  Your Name
-- Website - [your name or website url](https://www.your-site.com)
-- GitHub - [your GitHub username](https://github.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+  Daniel Rodriguez
+- GitHub - [Technoveltyco](https://github.com/technoveltyco)
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
-
+The teacher and TAs that help us with resources and support to my questions during the development of this challenge.
