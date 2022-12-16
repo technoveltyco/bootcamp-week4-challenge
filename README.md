@@ -56,9 +56,9 @@ Your final code should print the analysis to the console.
 
 ### Screenshots
 
-![Financial Analysis console output](./assets/images/Screenshot%202022-12-16%20100333.png)
+![Financial Analysis console output](./assets/images/Screenshot%202022-12-16%20223218.png)
 
-![Financial Analysis alert output](assets/images/Screenshot%202022-12-16%20100525.png)
+![Financial Analysis alert output](assets/images/Screenshot%202022-12-16%20223302.png)
 
 #### Financial Analysis Output
 
