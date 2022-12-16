@@ -162,15 +162,13 @@ function getGreatestIncrease() {
  *      The transaction (date and amount) with the smallest amount.
  */
 function getGreatestDecrease() {
-    const amounts = dataset.map(function (transaction) {
-       return transaction[1]; 
-    });
-    const minAmount = Math.min(...amounts);
-    const transaction = dataset.find(function(transaction) {
-        return transaction[1] === minAmount;
-    });
+    const rateOfChanges = getRateOfChanges();
+    const minRoCAmount = Math.min(...rateOfChanges);
+
+    const index = rateOfChanges.indexOf(minRoCAmount) + 1; // Add 1 to get the present transaction of the period.
+    const [presentDatePeriod, presentBalancePeriod] = getTransaction(index);
     
-    return transaction;
+    return [presentDatePeriod, minRoCAmount];
 }
 
 /**
