@@ -21,62 +21,23 @@ function getTransaction(index) {
 }
 
 /**
- * Gets all months from the dataset.
- * 
- * @returns {Array}
- *      An array of different months with format 'M-Y'.
- */
-function getAllMonths() {
-    let months = [];
-
-    for (let index = 0; index < dataset.length; index++) {
-        const transaction = getTransaction(index);
-        const month = getTransactionMonth(transaction);
-
-        if (!months.includes(month)) {
-            months.push(month);
-        } 
-    }
-
-    return months;
-}
-
-/**
- * Gets the net total amount of Profit/Losses over the entire period in the dataset.
- * 
- * @returns {Number}
- *      A signed Number representing the total net balance from the dataset.
- */
-function getTotalBalance() {
-    let totalBalance = .0;
-
-    for (let index = 0; index < dataset.length; index++) {
-        const transaction = getTransaction(index);
-        const balance = getTransactionBalance(transaction);
-
-        totalBalance += balance;
-    }
-
-    return totalBalance;
-}
-
-/**
- * Gets the month from a given transaction of the dataset.
+ * Gets the date from a given transaction of the dataset.
  * 
  * @param {Array} transaction 
  *      A transaction array from the dataset with month in format M-Y,
  *      and balance as signed Number.
  * @returns {String}
- *      Month in String formatting 'M-Y'.
+ *      Date in String formatting 'M-Y'.
  */
-function getTransactionMonth(transaction) {
+function getTransactionDate(transaction) {
     return transaction[0];
 }
 
 /**
  * Gets the balance from a given transaction of the dataset.
+ * 
  * @param {Array} transaction 
- *      A transaction array from the dataset with month in format M-Y,
+ *      A transaction array from the dataset with date in format M-Y,
  *      and balance as signed Number.
  * @returns {Number}
  *      A signed Number representing the balance of the transaction.
@@ -93,26 +54,44 @@ function getTransactionBalance(transaction) {
  *      and balance as signed Number.
  */
 function printTransaction(transaction) {
-    console.log("Month: ", getTransactionMonth(transaction), " Balance: ", getTransactionBalance(transaction));
+    console.log("Date: ", getTransactionDate(transaction), " Profit/Loss: ", getTransactionBalance(transaction));
+}
+
+/**
+ * Gets total months from the dataset.
+ * 
+ * @returns {Array}
+ *      An array of different dates with format 'M-Y'.
+ */
+function getTotalMonths() {
+    let months = [];
+
+    for (let index = 0; index < dataset.length; index++) {
+        const transaction = getTransaction(index);
+        const date = getTransactionDate(transaction);
+
+        if (!months.includes(date)) {
+            months.push(date);
+        } 
+    }
+
+    return months.length;
 }
 
 /**
  * Main entry point.
  */
 function main() {
-    const months = getAllMonths();
-    const netAmount = getTotalBalance();
+    const totalMonths = getTotalMonths();
 
-    console.log(
-        dataset.length, 
-        months.length, 
-        netAmount
-    );
+    const output = `
+    Financial Analysis
+------------------------------------------------------------------------
+    Total Months: ${totalMonths}
+------------------------------------------------------------------------
+    `;
 
-    for (let index = 0; index < dataset.length; index++) {
-        const transaction = getTransaction(index);
-        printTransaction(transaction);
-    }
+    console.log(output);
 }
 
 ///
