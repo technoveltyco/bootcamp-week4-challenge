@@ -98,17 +98,46 @@ function getTotalAmount() {
 }
 
 /**
+ * Gets the average change in Profit/Losses over the entire period of the dataset.
+ * 
+ * @returns {Number}
+ *      A signed number representing the average rate of change amount.
+ */
+function getAverageChange() {
+    let totalROCAmount = .0;
+    let previousAmount = .0
+    let currentAmount = .0;
+
+    for (let index = 0; index < dataset.length; index++) {
+        const [date, amount] = getTransaction(index);
+        currentAmount = amount;
+
+        const rateOfChangeAmount = Math.abs(currentAmount) - Math.abs(previousAmount);
+        totalROCAmount += rateOfChangeAmount;
+
+        previousAmount = currentAmount;
+    }
+
+    const totalMonths = getTotalMonths();
+    const averageChange = totalROCAmount / totalMonths;
+
+    return averageChange;
+}
+
+/**
  * Main entry point.
  */
 function main() {
     const totalMonths = getTotalMonths();
     const total = getTotalAmount();
+    const averageChange = getAverageChange();
 
     const output = `
     Financial Analysis
 ------------------------------------------------------------------------
     Total Months: ${totalMonths}
     Total: ${total}
+    Average Change: ${averageChange}
 ------------------------------------------------------------------------
     `;
 
