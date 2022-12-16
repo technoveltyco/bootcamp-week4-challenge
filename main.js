@@ -1,10 +1,10 @@
 ///
-// Dataset declaration.
+// Dataset initialization.
 ///
 const dataset = (typeof finances !== 'undefined') ? finances : [];
 
 ///
-// Function declarations. 
+// Functions declarations. 
 ///
 
 /**
@@ -177,6 +177,9 @@ function getGreatestDecrease() {
 
 /**
  * Main entry point.
+ * 
+ * @returns {String}
+ *      The Financial Analysis output.
  */
 function financialAnalysis() {
     const totalMonths = getTotalMonths();
@@ -208,5 +211,8 @@ function financialAnalysis() {
 // Executes main entry point. 
 ///
 
+// Gets financial analysis output.
 const output = financialAnalysis();
+
+// Logs output to the console.
 console.log(output);
