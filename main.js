@@ -146,15 +146,13 @@ function getAverageChange() {
  *      The transaction (date and amount) with the greatest amount.
  */
 function getGreatestIncrease() {
-    const amounts = dataset.map(function (transaction) {
-       return transaction[1]; 
-    });
-    const maxAmount = Math.max(...amounts);
-    const transaction = dataset.find(function(transaction) {
-        return transaction[1] === maxAmount;
-    });
+    const rateOfChanges = getRateOfChanges();
+    const maxRoCAmount = Math.max(...rateOfChanges);
+
+    const index = rateOfChanges.indexOf(maxRoCAmount) + 1; // Add 1 to get the present transaction of the period.
+    const [presentDatePeriod, presentBalancePeriod] = getTransaction(index);
     
-    return transaction;
+    return [presentDatePeriod, maxRoCAmount];
 }
 
 /**
