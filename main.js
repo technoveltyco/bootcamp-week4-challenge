@@ -98,28 +98,43 @@ function getTotalAmount() {
 }
 
 /**
+ * Gets all rate of changes between two consecutive periods over the dataset.
+ * 
+ * @returns {Array}
+ *      All the rates of change over all the periods of the dataset. 
+ */
+function getRateOfChanges() {
+    let rateOfChanges = [];
+
+    for (let index = 1; index < dataset.length; index++) {
+        const [presentDate, presentAmount] = getTransaction(index);
+        const [previousDate, previoustAmount] = getTransaction(index - 1);
+        
+        const rateOfChangeAmount = presentAmount - previoustAmount;
+
+        rateOfChanges.push(rateOfChangeAmount);
+    }
+
+    return rateOfChanges;
+}
+
+/**
  * Gets the average change in Profit/Losses over the entire period of the dataset.
  * 
  * @returns {Number}
  *      A signed number representing the average rate of change amount.
  */
 function getAverageChange() {
-    let totalROCAmount = .0;
-    let previousAmount = .0
-    let currentAmount = .0;
 
-    for (let index = 0; index < dataset.length; index++) {
-        const [date, amount] = getTransaction(index);
-        currentAmount = amount;
+    const rateOfChanges = getRateOfChanges();
 
-        const rateOfChangeAmount = Math.abs(currentAmount) - Math.abs(previousAmount);
-        totalROCAmount += rateOfChangeAmount;
+    const totalRoCAmount = rateOfChanges.reduce(function(total, rocAmount) {
+        return total + rocAmount;
+    }, .0);
 
-        previousAmount = currentAmount;
-    }
+    const totalMonths = getTotalMonths() - 1; // Removes the first month that does not have a previous period.
 
-    const totalMonths = getTotalMonths();
-    const averageChange = totalROCAmount / totalMonths;
+    const averageChange = totalRoCAmount / totalMonths;
 
     return averageChange;
 }
