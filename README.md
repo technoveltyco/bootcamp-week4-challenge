@@ -67,7 +67,7 @@ Your final code should print the analysis to the console.
 ---------------------------------------------------------------
     Total Months: 86
     Total: $38,382,578.00
-    Average Change: $7,803.48
+    Average Change: -$2,315.12
     Greatest Increase in Profits: Feb-2012 ($1,170,593.00)
     Greatest Decrease in Profits: Sep-2013 (-$1,196,225.00)
 ---------------------------------------------------------------
@@ -114,6 +114,8 @@ console.log(str)
 - [W3C School CSS Tutorial](https://www.w3schools.com/css/default.asp) - It helped as a reference for css properties.
 - [W3C School JavaScript Tutorial](https://www.w3schools.com/js/DEFAULT.asp) - A quick reference for Math functions and code snippets.
 - [How to Format Numbers as a Currency String in JavaScript?](https://thewebdev.info/2021/02/13/how-to-format-numbers-as-a-currency-string-in-javascript/) Useful resource to understand about string formatters, and specifically to format numbers as currencies.
+- [Rate of Change Definition, Formula, and Importance](https://www.investopedia.com/terms/r/rateofchange.asp) resource to undertand how to calculate the average rate of change displayed in the financial analysis.
+
 ## Author
   Daniel Rodriguez
 - GitHub - [Technoveltyco](https://github.com/technoveltyco)
