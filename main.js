@@ -143,6 +143,24 @@ function getGreatestIncrease() {
 }
 
 /**
+ * Gets the greatest decrease in losses (date and amount) over the entire period.
+ * 
+ * @returns {Array}
+ *      The transaction (date and amount) with the smallest amount.
+ */
+function getGreatestDecrease() {
+    const amounts = dataset.map(function (transaction) {
+       return transaction[1]; 
+    });
+    const minAmount = Math.min(...amounts);
+    const transaction = dataset.find(function(transaction) {
+        return transaction[1] === minAmount;
+    });
+    
+    return transaction;
+}
+
+/**
  * Main entry point.
  */
 function main() {
@@ -150,6 +168,7 @@ function main() {
     const total = getTotalAmount();
     const averageChange = getAverageChange();
     const [giDate, giAmount] = getGreatestIncrease();
+    const [gdDate, gdAmount] = getGreatestDecrease();
 
     const output = `
     Financial Analysis
@@ -158,6 +177,7 @@ function main() {
     Total: ${total}
     Average Change: ${averageChange}
     Greatest Increase in Profits: ${giDate} (${giAmount})
+    Greatest Decrease in Profits: ${gdDate} (${gdAmount})
 ------------------------------------------------------------------------
     `;
 
