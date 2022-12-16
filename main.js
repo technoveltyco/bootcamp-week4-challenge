@@ -125,12 +125,31 @@ function getAverageChange() {
 }
 
 /**
+ * Gets the greatest increase in profits (date and amount) over the entire period.
+ * 
+ * @returns {Array}
+ *      The transaction (date and amount) with the greatest amount.
+ */
+function getGreatestIncrease() {
+    const amounts = dataset.map(function (transaction) {
+       return transaction[1]; 
+    });
+    const maxAmount = Math.max(...amounts);
+    const transaction = dataset.find(function(transaction) {
+        return transaction[1] === maxAmount;
+    });
+    
+    return transaction;
+}
+
+/**
  * Main entry point.
  */
 function main() {
     const totalMonths = getTotalMonths();
     const total = getTotalAmount();
     const averageChange = getAverageChange();
+    const [giDate, giAmount] = getGreatestIncrease();
 
     const output = `
     Financial Analysis
@@ -138,6 +157,7 @@ function main() {
     Total Months: ${totalMonths}
     Total: ${total}
     Average Change: ${averageChange}
+    Greatest Increase in Profits: ${giDate} (${giAmount})
 ------------------------------------------------------------------------
     `;
 
