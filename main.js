@@ -163,7 +163,7 @@ function getGreatestDecrease() {
 /**
  * Main entry point.
  */
-function main() {
+function financialAnalysis() {
     const totalMonths = getTotalMonths();
     const total = getTotalAmount();
     const averageChange = getAverageChange();
@@ -186,11 +186,12 @@ function main() {
 ------------------------------------------------------------------------
     `;
 
-    console.log(output);
+    return output;
 }
 
 ///
 // Executes main entry point. 
 ///
 
-main();
+const output = financialAnalysis();
+console.log(output);
